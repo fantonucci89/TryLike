@@ -35,7 +35,7 @@ Requires Go 1.21+.
 ```bash
 git clone https://github.com/fantonucci89/TryLike
 cd TryLike
-make install          # builds and copies to ~/.local/bin/tryl
+make install          # builds and copies to ~/.local/bin/trylike
 ```
 
 Make sure `~/.local/bin` is in your `$PATH`.
@@ -118,7 +118,7 @@ editor = "vim"
 
 | Key | Description | Default |
 |---|---|---|
-| `base_path` | Absolute path to the workspace directory `tryl` manages | `~/Work` |
+| `base_path` | Absolute path to the workspace directory `trylike` manages | `~/Work` |
 | `editor` | Editor used to open the config file | `vim` |
 
 `~` is expanded automatically in `base_path`.
@@ -128,10 +128,10 @@ editor = "vim"
 ## Building
 
 ```bash
-make build    # compile for the current host into ./tryl
+make build    # compile for the current host into ./trylike
 make dist     # cross-compile all four release binaries into dist/
-make clean    # remove dist/ and ./tryl
-make install  # build + copy to ~/.local/bin/tryl
+make clean    # remove dist/ and ./trylike
+make install  # build + copy to ~/.local/bin/trylike
 make help     # list all targets
 ```
 

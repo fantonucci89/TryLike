@@ -24,7 +24,7 @@ func RenderList(
 	innerWidth := max(width-4, 10)
 
 	// ── Title bar ────────────────────────────────────────────────────────────
-	title := styles.TitleStyle.Width(innerWidth).Render("  tryl  —  " + basePath)
+	title := styles.TitleStyle.Width(innerWidth).Render("  trylike  —  " + basePath)
 
 	// ── Search bar ───────────────────────────────────────────────────────────
 	barStyle := styles.SearchBarStyle

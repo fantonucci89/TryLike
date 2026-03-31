@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-// Folder represents a folder managed by tryl.
+// Folder represents a folder managed by trylike.
 type Folder struct {
 	Name string
 	Path string

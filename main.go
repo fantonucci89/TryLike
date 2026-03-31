@@ -22,7 +22,7 @@ func main() {
 	// Load (or create) config.
 	cfg, err := config.Load()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "tryl: failed to load config: %v\n", err)
+		fmt.Fprintf(os.Stderr, "trylike: failed to load config: %v\n", err)
 		os.Exit(1)
 	}
 
@@ -31,18 +31,10 @@ func main() {
 	p := tea.NewProgram(m, tea.WithAltScreen())
 	finalModel, err := p.Run()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "tryl: %v\n", err)
+		fmt.Fprintf(os.Stderr, "trylike: %v\n", err)
 		os.Exit(1)
 	}
 
-	// If the user pressed Enter on a folder, print its path to stdout.
-	// A shell wrapper function captures this and runs cd:
-	//
-	//   function tryl() {
-	//     local dir
-	//     dir=$(command tryl "$@")
-	//     [[ -n "$dir" ]] && cd "$dir"
-	//   }
 	if app, ok := finalModel.(tui.AppModel); ok && app.SelectedPath != "" {
 		// fmt.Println(app.SelectedPath)
 		spawnShell(app.SelectedPath)
