@@ -2,7 +2,7 @@ package views
 
 import (
 	"github.com/charmbracelet/lipgloss"
-	"github.com/user/tryl/internal/tui/styles"
+	"github.com/fantonucci89/TryLike/internal/tui/styles"
 	"strings"
 )
 

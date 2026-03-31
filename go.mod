@@ -1,4 +1,4 @@
-module github.com/user/tryl
+module github.com/fantonucci89/TryLike
 
 go 1.25.5
 

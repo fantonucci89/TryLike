@@ -4,7 +4,7 @@ import (
 	"strings"
 
 	"github.com/charmbracelet/lipgloss"
-	"github.com/user/tryl/internal/tui/styles"
+	"github.com/fantonucci89/TryLike/internal/tui/styles"
 )
 
 // RenderRename renders the rename dialog.

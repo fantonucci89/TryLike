@@ -8,9 +8,9 @@ import (
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/bubbles/textinput"
 
-	"github.com/user/tryl/internal/config"
-	"github.com/user/tryl/internal/fs"
-	"github.com/user/tryl/internal/tui/views"
+	"github.com/fantonucci89/TryLike/internal/config"
+	"github.com/fantonucci89/TryLike/internal/fs"
+	"github.com/fantonucci89/TryLike/internal/tui/views"
 )
 
 // viewState tracks which screen/dialog is active.

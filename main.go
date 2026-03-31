@@ -8,8 +8,8 @@ import (
 
 	tea "github.com/charmbracelet/bubbletea"
 
-	"github.com/user/tryl/internal/config"
-	"github.com/user/tryl/internal/tui"
+	"github.com/fantonucci89/TryLike/internal/config"
+	"github.com/fantonucci89/TryLike/internal/tui"
 )
 
 func main() {
