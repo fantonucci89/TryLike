@@ -34,12 +34,12 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
-          go-version: "1.22"
+          go-version: "1.25.5"
 
       - name: Set binary name
         id: bin
         run: |
-          NAME="myapp-${{ matrix.goos }}-${{ matrix.goarch }}"
+          NAME="trylike-${{ matrix.goos }}-${{ matrix.goarch }}"
           if [ "${{ matrix.goos }}" = "windows" ]; then
             echo "filename=${NAME}.exe" >> $GITHUB_OUTPUT
           else
@@ -53,7 +53,7 @@ jobs:
           CGO_ENABLED: "0"
         run: |
           go build -ldflags="-s -w -X main.version=${{ github.ref_name }}" \
-            -o ${{ steps.bin.outputs.filename }} ./cmd/myapp
+            -o ${{ steps.bin.outputs.filename }} .
 
       - name: Archive (non-Windows)
         if: matrix.goos != 'windows'
