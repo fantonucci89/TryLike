@@ -46,26 +46,26 @@ Download a binary for your platform from the [Releases](https://github.com/fanto
 make it executable, and place it somewhere in your `$PATH`:
 
 ```bash
-chmod +x tryl-linux-amd64
-mv tryl-linux-amd64 ~/.local/bin/tryl
+chmod +x trylike-linux-amd64
+mv trylike-linux-amd64 ~/.local/bin/trylike
 ```
 
 Available targets:
 
 | File | Platform |
 |---|---|
-| `tryl-linux-amd64` | Linux x86-64 |
-| `tryl-linux-arm64` | Linux ARM64 |
-| `tryl-darwin-amd64` | macOS Intel |
-| `tryl-darwin-arm64` | macOS Apple Silicon |
+| `trylike-linux-amd64` | Linux x86-64 |
+| `trylike-linux-arm64` | Linux ARM64 |
+| `trylike-darwin-amd64` | macOS Intel |
+| `trylike-darwin-arm64` | macOS Apple Silicon |
 
 ---
 
 ## Usage
 
 ```bash
-tryl                  # open the TUI
-tryl my-project       # open with the search pre-filled with "my-project"
+trylike                  # open the TUI
+trylike my-project       # open with the search pre-filled with "my-project"
 ```
 
 ### Key bindings
@@ -103,10 +103,10 @@ Press `Ctrl+N` to open the create dialog. Fill in a folder name, then either:
 
 ## Configuration
 
-On first run, `tryl` creates a config file at:
+On first run, `trylike` creates a config file at:
 
 ```
-~/.config/tryl/config.toml
+~/.config/trylike/config.toml
 ```
 
 Default contents:
@@ -140,12 +140,12 @@ make help     # list all targets
 ## Project structure
 
 ```
-tryl/
+trylike/
 ├── main.go                       # Entry point
 ├── Makefile
 ├── go.mod / go.sum
 └── internal/
-    ├── config/config.go          # Config file (~/.config/tryl/config.toml)
+    ├── config/config.go          # Config file (~/.config/trylike/config.toml)
     ├── fs/fs.go                  # Filesystem operations
     └── tui/
         ├── model.go              # Bubble Tea model + state machine

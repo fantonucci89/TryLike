@@ -9,7 +9,7 @@ import (
 
 const (
 	DefaultEditor = "vim"
-	configDir     = ".config/tryl"
+	configDir     = ".config/trylike"
 	configFile    = "config.toml"
 )
 
@@ -19,7 +19,7 @@ type Config struct {
 	Editor   string `toml:"editor"`
 }
 
-// Load reads (or creates) the config file from ~/.config/tryl/config.toml.
+// Load reads (or creates) the config file from ~/.config/trylike/config.toml.
 func Load() (*Config, error) {
 	home, err := os.UserHomeDir()
 	if err != nil {
@@ -37,7 +37,7 @@ func Load() (*Config, error) {
 
 	// If the file doesn't exist, create it with defaults.
 	if _, err := os.Stat(path); os.IsNotExist(err) {
-		if err := os.MkdirAll(dir, 0755); err != nil {
+		if err := os.MkdirAll(dir, 0o755); err != nil {
 			return nil, err
 		}
 		f, err := os.Create(path)
