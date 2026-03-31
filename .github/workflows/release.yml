@@ -1,0 +1,80 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Build and Release
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        include:
+          - goos: linux
+            goarch: amd64
+          - goos: linux
+            goarch: arm64
+          - goos: darwin
+            goarch: amd64
+          - goos: darwin
+            goarch: arm64
+          - goos: windows
+            goarch: amd64
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.22"
+
+      - name: Set binary name
+        id: bin
+        run: |
+          NAME="myapp-${{ matrix.goos }}-${{ matrix.goarch }}"
+          if [ "${{ matrix.goos }}" = "windows" ]; then
+            echo "filename=${NAME}.exe" >> $GITHUB_OUTPUT
+          else
+            echo "filename=${NAME}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Build
+        env:
+          GOOS: ${{ matrix.goos }}
+          GOARCH: ${{ matrix.goarch }}
+          CGO_ENABLED: "0"
+        run: |
+          go build -ldflags="-s -w -X main.version=${{ github.ref_name }}" \
+            -o ${{ steps.bin.outputs.filename }} ./cmd/myapp
+
+      - name: Archive (non-Windows)
+        if: matrix.goos != 'windows'
+        run: |
+          tar -czf ${{ steps.bin.outputs.filename }}.tar.gz ${{ steps.bin.outputs.filename }}
+
+      - name: Archive (Windows)
+        if: matrix.goos == 'windows'
+        run: |
+          zip ${{ steps.bin.outputs.filename }}.zip ${{ steps.bin.outputs.filename }}
+
+      - name: Generate checksum
+        run: |
+          sha256sum ${{ steps.bin.outputs.filename }} > ${{ steps.bin.outputs.filename }}.sha256
+
+      - name: Upload to GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            ${{ steps.bin.outputs.filename }}
+            ${{ steps.bin.outputs.filename }}.tar.gz
+            ${{ steps.bin.outputs.filename }}.zip
+            ${{ steps.bin.outputs.filename }}.sha256
+          generate_release_notes: true
