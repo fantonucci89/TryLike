@@ -1,4 +1,4 @@
-# tryl
+# TryLike
 
 A keyboard-driven TUI for managing a project workspace directory.
 
@@ -34,7 +34,7 @@ Requires Go 1.21+.
 
 ```bash
 git clone https://github.com/fantonucci89/TryLike
-cd tryl
+cd TryLike
 make install          # builds and copies to ~/.local/bin/tryl
 ```
 
@@ -58,29 +58,6 @@ Available targets:
 | `tryl-linux-arm64` | Linux ARM64 |
 | `tryl-darwin-amd64` | macOS Intel |
 | `tryl-darwin-arm64` | macOS Apple Silicon |
-
----
-
-## Shell setup
-
-`tryl` prints the path of the selected folder to stdout when you press `Enter`.
-A shell wrapper function captures that output and runs `cd` for you.
-
-Add the following to your `~/.bashrc` or `~/.zshrc`:
-
-```bash
-function tryl() {
-  local dir
-  dir=$(command tryl "$@")
-  [[ -n "$dir" ]] && cd "$dir"
-}
-```
-
-Then reload your shell:
-
-```bash
-source ~/.bashrc   # or ~/.zshrc
-```
 
 ---
 
